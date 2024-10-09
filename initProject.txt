@@ -1,9 +1,12 @@
 Para criar um projeto React com Next
-- npx creat-next-app@latest
+- npx create-next-app@latest
     - TypeScript sim
     - ESLint sim
-    - Tailwind sim
+    - Tailwind css sim
     - src sim
+    - App router sim
+    - import alias
+    
     
 Padrões de commit: 
 https://outstanding-armadillo-c23.notion.site/Padr-es-de-commits-85ac4110da07400d828fc503a27361be
