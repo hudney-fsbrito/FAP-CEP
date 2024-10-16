@@ -1,7 +1,7 @@
 import { MyButton } from "./components/my-button";
 interface AvatarProps {
   size?:number,
-  name?:string
+  alt?:string
   src:string
 }
 
@@ -9,15 +9,12 @@ type CardProps = {
   children: React.ReactNode,
 }
 
-function Avatar({size = 100,src}: AvatarProps) {
+function Avatar({size = 100,src,alt=""}: AvatarProps) {
   
-  // const {name,size,src} = props;
-
   return (
     <img
-      className="avatar"
       src={src}
-      // alt={name}
+      alt={alt}
       width={size}
       height={size}
     />
@@ -39,7 +36,9 @@ export default function Home() {
       <h1>Home!</h1>
       <div className="flex p-16 border border-blue-500">
       
-      <Avatar size={150} name="Imagem teste" src="https://i.imgur.com/1bX5QH6.jpg"/>
+      <Avatar size={150} alt="Imagem teste" src="https://i.imgur.com/1bX5QH6.jpg"/>
+      <Avatar size={50} alt="Imagem teste" src="https://i.imgur.com/1bX5QH6.jpg"/>
+      <Avatar size={200} src="https://i.imgur.com/1bX5QH6.jpg"/>
      
 
       </div>
