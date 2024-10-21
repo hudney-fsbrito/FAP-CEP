@@ -1,4 +1,5 @@
 import { MyButton } from "./components/my-button";
+// import { useRouter } from "next/router";
 interface AvatarProps {
   size?:number,
   alt?:string
@@ -9,7 +10,7 @@ type CardProps = {
   children: React.ReactNode,
 }
 
-function Avatar({size = 100,src,alt=""}: AvatarProps) {
+function Avatar({size = 100, src, alt=""}: AvatarProps) {
   
   return (
     <img
