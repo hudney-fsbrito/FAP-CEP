@@ -7,6 +7,9 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      primary: "#5c6ac4",
+    },
     extend: {
       colors: {
         background: "var(--background)",

@@ -1,3 +1,4 @@
+"use client"
 import { MyButton } from "./components/my-button";
 // import { useRouter } from "next/router";
 interface AvatarProps {
@@ -35,7 +36,6 @@ function Card({children} : CardProps) {
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-1 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1>Home!</h1>
       <div className="flex gap-2 p-16 border border-blue-500">
       
       <Avatar size={150} alt="Imagem teste" src="https://i.imgur.com/1bX5QH6.jpg"/>

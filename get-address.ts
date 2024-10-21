@@ -1,18 +1,17 @@
-async function getAddress(cep: string) {
+export async function getAddress(cep: string) {
   const url = `https://viacep.com.br/ws/${cep}/json/`;
 
   try {
     const response = await fetch(url);
-
-    console.log(response);
+    // console.log(response);
     const data = await response.json();
-    console.log(data.erro);
+    return data
   } catch (error) {
     console.error("Ocorreu algum erro na requisição", error);
   }
 }
 
-getAddress("53240501");
+// getAddress("53240501");
 
 
 /* async function getData() {
