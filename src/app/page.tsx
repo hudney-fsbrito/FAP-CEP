@@ -1,5 +1,5 @@
 "use client"
-import { MyButton } from "./components/my-button";
+import { MyButton } from "../components/my-button";
 // import { useRouter } from "next/router";
 interface AvatarProps {
   size?:number,

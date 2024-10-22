@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export function Header(){
     return (
-        <>
-            <ul>
+        <div className=" flex border-b-2 justify-center items-center">
+            <ul className="flex gap-4 p-6">
                 <li>
                     <Link href="/">Home</Link>
                 </li>
@@ -14,6 +14,6 @@ export function Header(){
                     <Link href="/sign-in">Sign-IN</Link>
                 </li>
             </ul>
-        </>
+        </div>
     )
 }

@@ -1,5 +1,5 @@
 "use client"
-import { getAddress } from "../../../get-address";
+import { getAddress } from "../../get-address";
 
 export function MyButton() {
 
