@@ -41,6 +41,7 @@ function Card({children} : CardProps) {
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-1 pb-20 gap-12 font-[family-name:var(--font-geist-sans)]">
+      <h1 className="flex justify-center text-4xl">Página Home</h1>
       <div className="flex gap-2 p-1 border border-blue-500">
       
       <Avatar size={150} alt="Imagem teste" src="https://i.imgur.com/1bX5QH6.jpg"/>

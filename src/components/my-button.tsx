@@ -3,17 +3,27 @@ import { useState } from "react";
 import { getAddress } from "../../get-address";
 
 export function MyButton() {
-  const [adress, setAdress] = useState();
-  const [cep, setCep] = useState();
-  const [neighborhood, setNeighborhood] = useState();
+  const [adress, setAdress] = useState(null);
+  const [cep, setCep] = useState(null);
+  const [neighborhood, setNeighborhood] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleGetAddress() {
-    const result = await getAddress("53025122");
-    console.log(result);
+    setLoading(true)
+    try{
 
-    setAdress(result.logradouro);
-    setCep(result.cep);
-    setNeighborhood(result.bairro);
+      const result = await getAddress("53025122");
+      console.log(result);
+  
+      setAdress(result.logradouro);
+      setCep(result.cep);
+      setNeighborhood(result.bairro);
+    } catch (error){
+      console.log(error);
+      alert("Ocorrey um erro ao obter o endereço.")
+    } finally{
+      setLoading(false)
+    }
     
   }
 
@@ -27,9 +37,11 @@ export function MyButton() {
       </button>
 
       <div>
+        {/* {String(loading)} */}
+        {loading? "Carregando..." : "Obter endereço"}
         <div>Endereço: {adress}</div>
         <div>cep: {cep}</div>
-        <div>Cidade: {neighborhood}</div>
+        <div>Bairro: {neighborhood}</div>
       </div>
     </div>
   );

@@ -1,3 +1,3 @@
 export default function SignIn() {
-    return <h1>Sign-IN</h1>
+    return <h1 className="flex justify-center">Sign-IN</h1>
 }

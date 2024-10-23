@@ -1,3 +1,3 @@
 export default function Register() {
-    return <h1>Cadastro</h1>
+    return <h1 className="flex justify-center">Cadastro</h1>
 }
