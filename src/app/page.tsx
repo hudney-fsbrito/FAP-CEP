@@ -13,11 +13,13 @@ type Address = {
 }
 
 const address: Address[] = [
-  "Amparo",
-  "Pernambuco",
-  "Olinda",
-  "Travessa Orlando da Silva",
-  "Nordeste",
+  {
+  bairro:"Amparo",
+  estado:"Pernambuco",
+  localidade:"Olinda",
+  logradouro:"Travessa Orlando da Silva",
+  regiao:"Nordeste",
+  }
 ]
 
 const nomes: string[] = [
@@ -73,10 +75,14 @@ export default function Home() {
             <li key={i}>{nome}</li>
           ))}
         </ul>
-        <ul >
+        <ul className="flex flex-col items-center justify-center">
           {address.map((item,i)=>(
             <li key={i}>
-              {item}
+              Bairro: {item.bairro}, 
+              Estado: {item.estado}, 
+              Localidade: {item.localidade}, 
+              Logradouro: {item.logradouro}, 
+              Região: {item.regiao}
             </li>
           ))}
         </ul>
