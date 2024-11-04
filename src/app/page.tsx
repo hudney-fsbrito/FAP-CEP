@@ -2,23 +2,27 @@
 // import { ListItem } from "@/components/list";
 import { MyButton } from "../components/my-button";
 // import { useRouter } from "next/router";
-type Address = {
-  
+export type Address = {
+  id: string;
     bairro:string;
     estado:string;
     localidade:string;
     logradouro:string;
     regiao:string;
-  
+    cep:string;
+    consultedAt: Date,
 }
 
-const address: Address[] = [
+export const initialAddress: Address[] = [
   {
+    id: self.crypto.randomUUID(),
   bairro:"Amparo",
   estado:"Pernambuco",
   localidade:"Olinda",
   logradouro:"Travessa Orlando da Silva",
   regiao:"Nordeste",
+  cep:"",
+  consultedAt: new Date,
   }
 ]
 
@@ -76,7 +80,7 @@ export default function Home() {
           ))}
         </ul>
         <ul className="flex flex-col items-center justify-center">
-          {address.map((item,i)=>(
+          {initialAddress.map((item,i)=>(
             <li key={i}>
               Bairro: {item.bairro}, 
               Estado: {item.estado}, 

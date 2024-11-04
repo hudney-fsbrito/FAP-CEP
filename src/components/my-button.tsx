@@ -1,6 +1,23 @@
 "use client";
 import { useState } from "react";
 import { getAddress } from "../../get-address";
+import { Address } from "@/app/page";
+import { initialAddress } from "@/app/page";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
+
+function formatDate(date:Date) {
+  const resultDate = formatDistanceToNow(
+    new Date(date),
+    {
+      includeSeconds: true, 
+      locale: ptBR,
+    }
+  )
+  //=> 'less than 20 seconds'
+  return resultDate
+}
 
 export function MyButton() {
   const [adress, setAdress] = useState(null);
@@ -9,28 +26,35 @@ export function MyButton() {
   const [loading, setLoading] = useState(false);
 
   const [textValue, setTextVelue] = useState("");
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState<Address[]>(initialAddress);
 
   async function handleGetAddress() {
     setLoading(true);
     try {
       const result = await getAddress(textValue);
+    
+      //Adiciona um atributo no objeto
+      const newAdress: Address = {
+        id: self.crypto.randomUUID(),
+        consultedAt: new Date, 
+        ...result} 
+
+      if (result?.erro === "true") {
+        alert("CEP inválido.");
+        return;
+      }
+
       console.log(result);
+      console.log(newAdress);
+      
       console.log(textValue);
 
       setAdress(result.logradouro);
       setCep(result.cep);
       setNeighborhood(result.bairro);
 
-      setAddresses((arrAddress) => [
-        {
-          logradouro: result.logradouro,
-          cep: result.cep,
-          bairro: result.bairro,
-        },
-        ...arrAddress,
-
-      ]);
+      const newAddresses = [newAdress, ...addresses];
+      setAddresses(newAddresses);
     } catch (error) {
       console.log(error);
       alert("Ocorrey um erro ao obter o endereço.");
@@ -72,9 +96,9 @@ export function MyButton() {
         </div>
       </div>
       <div>
-        {addresses.map((address, index) => (
-          <div key={index} className="mt-4">
-            <div>Endereço: {address.logradouro}</div>
+        {addresses.map((address) => (
+          <div key={address.id} className="mt-4">
+            <div>Endereço: {address.logradouro} {formatDate(address.consultedAt)}</div>
             <div>CEP: {address.cep}</div>
             <div>Bairro: {address.bairro}</div>
           </div>
