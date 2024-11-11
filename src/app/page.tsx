@@ -69,17 +69,17 @@ export default function Home() {
           src="https://i.imgur.com/1bX5QH6.jpg"
         />
 
-        <Card>
+        {/* <Card>
           <div>Teste 1</div>
           <div>Teste 2</div>
-        </Card>
+        </Card> */}
         {/* <ListItem nomes={} /> */}
-        <ul>
+        {/* <ul>
           {nomes.map((nome,i)=>(
             <li key={i}>{nome}</li>
           ))}
-        </ul>
-        <ul className="flex flex-col items-center justify-center">
+        </ul> */}
+        {/* <ul className="flex flex-col items-center justify-center">
           {initialAddress.map((item,i)=>(
             <li key={i}>
               Bairro: {item.bairro}, 
@@ -89,7 +89,7 @@ export default function Home() {
               Região: {item.regiao}
             </li>
           ))}
-        </ul>
+        </ul> */}
 
       </div>
 

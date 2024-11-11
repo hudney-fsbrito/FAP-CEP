@@ -5,6 +5,7 @@ import { Address } from "@/app/page";
 import { initialAddress } from "@/app/page";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { MdOutlineDelete } from "react-icons/md";
 
 
 function formatDate(date:Date) {
@@ -63,6 +64,14 @@ export function MyButton() {
     }
   }
 
+  function handleDeleteAddress(id:string) {
+    console.log(id);
+    const filteredAddresses = addresses.filter((address)=> address.id != id)
+    console.log(filteredAddresses);
+    setAddresses(filteredAddresses)
+    
+  }
+
   return (
     <>
       <div className="flex flex-row gap-5">
@@ -76,6 +85,7 @@ export function MyButton() {
             type="text"
             placeholder="Digite um CEP válido"
           />
+          {loading ? "Carregando..." : "Obter endereço"}
         </div>
 
         <button
@@ -88,7 +98,7 @@ export function MyButton() {
 
         <div>
           {/* {String(loading)} */}
-          {loading ? "Carregando..." : "Obter endereço"}
+          
 
           <div>Endereço: {adress}</div>
           <div>cep: {cep}</div>
@@ -96,13 +106,38 @@ export function MyButton() {
         </div>
       </div>
       <div>
-        {addresses.map((address) => (
-          <div key={address.id} className="mt-4">
-            <div>Endereço: {address.logradouro} {formatDate(address.consultedAt)}</div>
-            <div>CEP: {address.cep}</div>
-            <div>Bairro: {address.bairro}</div>
-          </div>
-        ))}
+        
+      <table className="table-auto [&>*>*>*]:border-2">
+        <thead>
+          <tr className="[&>*]:px-4 [&>*]:py-2">
+            <th>Logradouro</th>
+            <th>Bairro</th>
+            <th>Localidade</th>
+            <th>UF</th>
+            <th>CEP</th>
+            <th>Consultado em</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {addresses.map((address) => (
+            <tr key={address.id} className="[&>*]:px-4 [&>*]:py-2">
+              <td>{address.logradouro}</td>
+              <td>{address.bairro}</td>
+              <td>{address.localidade}</td>
+              <td>{address.estado}</td>
+              <td>{address.cep}</td>
+              <td>{formatDate(address.consultedAt)}</td>
+              <td>
+                <button onClick={()=>handleDeleteAddress(address.id)} className="bg-red-300 p-0.5 flex items-center">
+                  <MdOutlineDelete size={24} />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       </div>
     </>
   );
