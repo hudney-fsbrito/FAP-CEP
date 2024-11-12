@@ -24,7 +24,7 @@ export function MyButton({ onFetchAddress }: MyButtonProps) {
       <button
         disabled={!textValue}
         onClick={() => onFetchAddress(textValue)}
-        className="w-full border border-blue-950 p-2 bg-primary text-[#fff] rounded-2xl"
+        className="w-full p-2 bg-primary text-[#fff] rounded-2xl outline-none"
       >
         Buscar Endereço
       </button>

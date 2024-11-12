@@ -101,44 +101,57 @@ export default function Home() {
       {loading && <p>Carregando...</p>}
 
       {addresses.length > 0 && (
-        <motion.table
-          className="table-auto bg-primary bg-opacity-15 rounded-md [&>*>*>*]:border-2 z-10 "
+        <motion.div
+          className="p-4 w-[80%] max-w-4xl bg-primary bg-opacity-15 z-10 rounded-lg shadow-lg "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.8 }}
         >
-          <thead className="">
-            <tr className=" [&>*]:px-4 [&>*]:py-2">
-              <th>Logradouro</th>
-              <th>Bairro</th>
-              <th>Localidade</th>
-              <th>UF</th>
-              <th>CEP</th>
-              <th>Consultado em</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {addresses.map((address) => (
-              <tr key={address.id} className="[&>*]:px-4 [&>*]:py-2">
-                <td>{address.logradouro}</td>
-                <td>{address.bairro}</td>
-                <td>{address.localidade}</td>
-                <td>{address.estado}</td>
-                <td>{address.cep}</td>
-                <td>{formatDate(address.consultedAt)}</td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteAddress(address.id)}
-                    className="bg-red-300 p-0.5 flex items-center"
-                  >
-                    <MdOutlineDelete size={24} />
-                  </button>
-                </td>
+          <motion.table className="table-auto w-full border-collapse ">
+            <thead className="bg-primary2 text-white">
+              <tr className="">
+                <th className="px-4 py-2 min-w-[150px] text-center">
+                  Logradouro
+                </th>
+                <th className="px-4 py-2 min-w-[120px] text-center">Bairro</th>
+                <th className="px-4 py-2 min-w-[120px] text-center">
+                  Localidade
+                </th>
+                <th className="px-4 py-2 min-w-[60px] text-center">UF</th>
+                <th className="px-4 py-2 min-w-[100px] text-center">CEP</th>
+                <th className="px-4 py-2 min-w-[150px] text-center">
+                  Consultado em
+                </th>
+                <th className="px-4 py-2 min-w-[100px] text-center">Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </motion.table>
+            </thead>
+            <tbody>
+              {addresses.map((address) => (
+                <tr
+                  key={address.id}
+                  className="odd:bg-gray-100 even:bg-gray-50 text-center"
+                >
+                  <td className="px-4 py-2">{address.logradouro}</td>
+                  <td className="px-4 py-2">{address.bairro}</td>
+                  <td className="px-4 py-2">{address.localidade}</td>
+                  <td className="px-4 py-2">{address.estado}</td>
+                  <td className="px-4 py-2">{address.cep}</td>
+                  <td className="px-4 py-2">
+                    {formatDate(address.consultedAt)}
+                  </td>
+                  <td className="px-4 py-2">
+                    <button
+                      onClick={() => handleDeleteAddress(address.id)}
+                      className="bg-red-500 text-white p-1 rounded-full z-10"
+                    >
+                      <MdOutlineDelete size={24} fill="red" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </motion.table>
+        </motion.div>
       )}
     </div>
   );
