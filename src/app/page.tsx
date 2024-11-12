@@ -142,7 +142,7 @@ export default function Home() {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => handleDeleteAddress(address.id)}
-                      className="bg-red-500 text-white p-1 rounded-full z-10"
+                      className="p-1 rounded-full z-10"
                     >
                       <MdOutlineDelete size={24} fill="red" />
                     </button>
