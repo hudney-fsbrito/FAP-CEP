@@ -1,99 +1,93 @@
+// page.tsx
 "use client";
-// import { ListItem } from "@/components/list";
-import { MyButton } from "../components/my-button";
-// import { useRouter } from "next/router";
+import { useState } from "react";
+import { MyButton } from "./components/my-button";
+import { MdOutlineDelete } from "react-icons/md";
+import { fetchAddress, formatDate } from "./addressUtil";
+
 export type Address = {
   id: string;
-    bairro:string;
-    estado:string;
-    localidade:string;
-    logradouro:string;
-    regiao:string;
-    cep:string;
-    consultedAt: Date,
-}
+  bairro: string;
+  estado: string;
+  localidade: string;
+  logradouro: string;
+  regiao: string;
+  cep: string;
+  consultedAt: Date;
+};
 
 export const initialAddress: Address[] = [
   {
     id: self.crypto.randomUUID(),
-  bairro:"Amparo",
-  estado:"Pernambuco",
-  localidade:"Olinda",
-  logradouro:"Travessa Orlando da Silva",
-  regiao:"Nordeste",
-  cep:"",
-  consultedAt: new Date,
-  }
-]
-
-const nomes: string[] = [
-  "Pedro Paulo",
-  "Breno Bruno",
-  "Angela Angelica",
-  "Vitor Hugo"
-]
-interface AvatarProps {
-  size?: number;
-  alt?: string;
-  src: string;
-}
-
-type CardProps = {
-  children: React.ReactNode;
-};
-
-function Avatar({ size = 100, src, alt = "" }: AvatarProps) {
-  return (
-    <div>
-      <picture>
-        <img className="" src={src} alt={alt} width={size} height={size} />
-      </picture>
-    </div>
-  );
-}
-
-function Card({ children }: CardProps) {
-  // console.log(children);
-
-  return <div className="p-5 border border-black rounded-md ">{children}</div>;
-}
+    bairro: "Bairro",
+    estado: "Estado",
+    localidade: "Cidade",
+    logradouro: "Nome da rua, avenida...",
+    regiao: "Região",
+    cep: "Cep",
+    consultedAt: new Date(),
+  },
+];
 
 export default function Home() {
+  const [addresses, setAddresses] = useState<Address[]>(initialAddress);
+  const [loading, setLoading] = useState(false);
+
+  const handleFetchAddress = async (textValue: string) => {
+    setLoading(true);
+    const newAddress = await fetchAddress(textValue);
+    if (newAddress) {
+      setAddresses([newAddress, ...addresses]);
+    }
+    setLoading(false);
+  };
+
+  const handleDeleteAddress = (id: string) => {
+    setAddresses(addresses.filter((address) => address.id !== id));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-1 pb-20 gap-12 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="flex justify-center text-4xl">Página Home</h1>
-      <div className="flex gap-2 p-1 border border-blue-500">
-        <Avatar
-          size={150}
-          alt="Imagem teste"
-          src="https://i.imgur.com/1bX5QH6.jpg"
-        />
+      <h1 className="flex justify-center text-4xl">CEP Torpedo</h1>
+      <MyButton onFetchAddress={handleFetchAddress} />
 
-        {/* <Card>
-          <div>Teste 1</div>
-          <div>Teste 2</div>
-        </Card> */}
-        {/* <ListItem nomes={} /> */}
-        {/* <ul>
-          {nomes.map((nome,i)=>(
-            <li key={i}>{nome}</li>
-          ))}
-        </ul> */}
-        {/* <ul className="flex flex-col items-center justify-center">
-          {initialAddress.map((item,i)=>(
-            <li key={i}>
-              Bairro: {item.bairro}, 
-              Estado: {item.estado}, 
-              Localidade: {item.localidade}, 
-              Logradouro: {item.logradouro}, 
-              Região: {item.regiao}
-            </li>
-          ))}
-        </ul> */}
+      {loading && <p>Carregando...</p>}
 
-      </div>
-
-      <MyButton />
+      {addresses.length > 0 && (
+        <table className="table-auto [&>*>*>*]:border-2">
+          <thead>
+            <tr className="[&>*]:px-4 [&>*]:py-2">
+              <th>Logradouro</th>
+              <th>Bairro</th>
+              <th>Localidade</th>
+              <th>UF</th>
+              <th>CEP</th>
+              <th>Consultado em</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {addresses.map((address) => (
+              <tr key={address.id} className="[&>*]:px-4 [&>*]:py-2">
+                <td>{address.logradouro}</td>
+                <td>{address.bairro}</td>
+                <td>{address.localidade}</td>
+                <td>{address.estado}</td>
+                <td>{address.cep}</td>
+                <td>{formatDate(address.consultedAt)}</td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteAddress(address.id)}
+                    className="bg-red-300 p-0.5 flex items-center"
+                  >
+                    <MdOutlineDelete size={24} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }

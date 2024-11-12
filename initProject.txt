@@ -7,6 +7,14 @@ Para criar um projeto React com Next
     - App router sim
     - import alias
     - turbopackge
+
+
+    npm install date-fns --save
+    npm install react-icons --save
+
+    https://tailwindcss.com/docs/line-clamp
+    https://motion.dev/
     
+
 Padrões de commit: 
 https://outstanding-armadillo-c23.notion.site/Padr-es-de-commits-85ac4110da07400d828fc503a27361be
