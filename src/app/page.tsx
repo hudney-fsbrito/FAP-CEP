@@ -124,19 +124,19 @@ export default function Home() {
           <motion.table className="table-auto w-full border-collapse ">
             <thead className="bg-primary2 text-white">
               <tr className="">
-                <th className="px-4 py-2 min-w-[150px] text-center">
+                <th className="px-4 py-2 min-w-[180px] text-center">
                   Logradouro
                 </th>
-                <th className="px-4 py-2 min-w-[120px] text-center">Bairro</th>
-                <th className="px-4 py-2 min-w-[120px] text-center">
+                <th className="px-4 py-2 min-w-[100px] text-center">Bairro</th>
+                <th className="px-4 py-2 min-w-[100px] text-center">
                   Localidade
                 </th>
                 <th className="px-4 py-2 min-w-[60px] text-center">UF</th>
-                <th className="px-4 py-2 min-w-[100px] text-center">CEP</th>
-                <th className="px-4 py-2 min-w-[150px] text-center">
+                <th className="px-4 py-2 min-w-[120px] text-center">CEP</th>
+                <th className="px-4 py-2 min-w-[100px] text-center">
                   Consultado em
                 </th>
-                <th className="px-4 py-2 min-w-[100px] text-center">Ações</th>
+                <th className="px-4 py-2 min-w-[60px] text-center">Ações</th>
               </tr>
             </thead>
             <tbody>

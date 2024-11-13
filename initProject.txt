@@ -11,6 +11,7 @@ Para criar um projeto React com Next
 
     npm install date-fns --save
     npm install react-icons --save
+    https://nextjs.org/docs/app/building-your-application/deploying - deploy
 
     https://tailwindcss.com/docs/line-clamp
     https://motion.dev/
