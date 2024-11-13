@@ -1,6 +1,6 @@
 // page.tsx
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MyButton } from "./components/my-button";
 import { MdOutlineDelete } from "react-icons/md";
 import { fetchAddress, formatDate } from "./addressUtil";
@@ -32,7 +32,7 @@ export const initialAddress: Address[] = [
 ];
 
 export default function Home() {
-  const [addresses, setAddresses] = useState<Address[]>(initialAddress);
+  const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleFetchAddress = async (textValue: string) => {
@@ -50,6 +50,22 @@ export default function Home() {
     console.log(filteredAddresses);
     setAddresses(filteredAddresses);
   };
+
+  useEffect(()=>{
+    console.log("Primeira renderização");
+    const result = localStorage.getItem("@addresses")
+    console.log(result);
+    if (result !== null) {
+        setAddresses(JSON.parse(result));
+    }
+    console.log(result);
+    
+  }, [])
+  useEffect(()=>{
+    console.log("Address mudou");
+    if (addresses !== null) return
+    localStorage.setItem("@addresses", JSON.stringify(addresses))
+  }, [addresses])
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen p-1 pb-20 gap-12 font-[family-name:var(--font-geist-sans)]">
