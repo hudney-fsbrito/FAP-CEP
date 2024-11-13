@@ -39,13 +39,14 @@ export default function Home() {
     setLoading(true);
     const newAddress = await fetchAddress(textValue);
     if (newAddress) {
-      setAddresses([newAddress, ...addresses]);
+      setAddresses([newAddress, ...addresses || []]);
     }
     setLoading(false);
   };
 
   const handleDeleteAddress = (id: string) => {
     console.log(id);
+    if (!addresses) return
     const filteredAddresses = addresses.filter((address) => address.id !== id);
     console.log(filteredAddresses);
     setAddresses(filteredAddresses);
@@ -54,16 +55,13 @@ export default function Home() {
   useEffect(()=>{
     console.log("Primeira renderização");
     const result = localStorage.getItem("@addresses")
-    console.log(result);
     if (result !== null) {
         setAddresses(JSON.parse(result));
     }
-    console.log(result);
-    
   }, [])
   useEffect(()=>{
     console.log("Address mudou");
-    if (addresses !== null) return
+    if (addresses === null) return
     localStorage.setItem("@addresses", JSON.stringify(addresses))
   }, [addresses])
 
@@ -116,7 +114,7 @@ export default function Home() {
 
       {loading && <p>Carregando...</p>}
 
-      {addresses.length > 0 && (
+      {/* {addresses.length > 0 && ( */}
         <motion.div
           className="p-4 w-[80%] max-w-4xl bg-primary bg-opacity-15 z-10 rounded-lg shadow-lg "
           initial={{ opacity: 0, y: 20 }}
@@ -142,7 +140,7 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {addresses.map((address) => (
+              {addresses?.map((address) => (
                 <tr
                   key={address.id}
                   className="odd:bg-gray-100 even:bg-gray-50 text-center"
@@ -168,7 +166,7 @@ export default function Home() {
             </tbody>
           </motion.table>
         </motion.div>
-      )}
+      {/* // )} */}
     </div>
   );
 }
