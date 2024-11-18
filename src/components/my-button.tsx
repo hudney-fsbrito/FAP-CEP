@@ -66,13 +66,13 @@ export function MyButton() {
   return (
     <>
       <div className="flex flex-row gap-5">
-        <div className="flex flex-col">
-          <label htmlFor="">CEP</label>
+        <div className="flex flex-col text-primary3">
+          <label htmlFor="" className="text-primary3">CEP</label>
           <input
             onChange={(e) => {
               setTextVelue(e.target.value);
             }}
-            className="border border-s-4 border-b-primary p-5 rounded-2xl"
+            className="border border-s-4 border-b-primary text-primary4 active:text-primary4 p-5 rounded-2xl"
             type="text"
             placeholder="Digite um CEP válido"
           />

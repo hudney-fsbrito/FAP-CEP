@@ -10,8 +10,9 @@ const config: Config = {
     colors: {
       primary: "#5c6ac4",
       primary2: "#bbb",
-      primary3: "#5c6ac4",
-      primary4: "#5c6ac4",
+      primary3: "#fff",
+      primary4: "#535353",
+      primary5: "#ff0000",
     },
     extend: {
       colors: {

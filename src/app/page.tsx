@@ -68,17 +68,17 @@ export default function Home() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen p-1 pb-20 gap-12 font-[family-name:var(--font-geist-sans)]">
       <motion.img
-        src="/backgroundMapa.jpg"
+        src="/polygon-Luminary.svg"
         alt={"Imagem de um mapa como imagem de fundo"}
-        className="absolute top-0 bottom-[-10px] bg-gradient-to-tl brightness-75 w-full h-full object-cover 
-      opacity-50 z-0"
+        className="absolute top-0 bottom-[-10px] bg-gradient-to-tl brightness-75 w-full h-full object-cover object-right-bottom 
+       z-0"
         initial={{ scale: 2.5 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3 }}
       />
 
       <motion.h1
-        className="flex justify-center text-4xl font-semibold z-10"
+        className="flex justify-center text-4xl text-primary2 font-semibold z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.8 }}
@@ -104,7 +104,7 @@ export default function Home() {
       </motion.h1>
 
       <motion.div
-        className="w-96 p-10 bg-primary bg-opacity-15 rounded-md flex flex-col gap-5 z-10"
+        className="w-96 p-10 bg-primary bg-opacity-50 rounded-md flex flex-col gap-5 z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.8 }}
@@ -116,15 +116,15 @@ export default function Home() {
 
       {/* {addresses.length > 0 && ( */}
         <motion.div
-          className="p-4 w-[80%] max-w-4xl bg-primary bg-opacity-15 z-10 rounded-lg shadow-lg "
+          className="p-4 w-[80%] max-w-4xl bg-primary bg-opacity-50 z-10 rounded-lg shadow-lg "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.8 }}
         >
-          <motion.table className="table-auto w-full border-collapse ">
-            <thead className="bg-primary2 text-white">
-              <tr className="">
-                <th className="px-4 py-2 min-w-[180px] text-center">
+          <motion.table className="table-auto w-full border-collapse">
+            <thead className="bg-primary text-primary3 drop-shadow-xl ">
+              <tr >
+                <th className="px-4 py-2 min-w-[180px] text-center rounded-s-lg">
                   Logradouro
                 </th>
                 <th className="px-4 py-2 min-w-[100px] text-center">Bairro</th>
@@ -136,14 +136,14 @@ export default function Home() {
                 <th className="px-4 py-2 min-w-[100px] text-center">
                   Consultado em
                 </th>
-                <th className="px-4 py-2 min-w-[60px] text-center">Ações</th>
+                <th className="px-4 py-2 min-w-[60px] text-center rounded-e-lg">Ações</th>
               </tr>
             </thead>
             <tbody>
               {addresses?.map((address) => (
                 <tr
                   key={address.id}
-                  className="odd:bg-gray-100 even:bg-gray-50 text-center"
+                  className="odd:bg-gray-100 even:bg-gray-50 drop-shadow-xl text-center text-primary3"
                 >
                   <td className="px-4 py-2">{address.logradouro}</td>
                   <td className="px-4 py-2">{address.bairro}</td>
@@ -158,7 +158,10 @@ export default function Home() {
                       onClick={() => handleDeleteAddress(address.id)}
                       className="p-1 rounded-full z-10"
                     >
-                      <MdOutlineDelete size={24} fill="red" />
+                      <div className="bg-primary5 p-2 rounded-lg">
+
+                      <MdOutlineDelete size={24} fill="white" className=" rounded-lg" />
+                      </div>
                     </button>
                   </td>
                 </tr>
