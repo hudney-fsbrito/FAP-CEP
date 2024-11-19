@@ -17,7 +17,7 @@ export type Address = {
   consultedAt: Date;
 };
 
-export const initialAddress: Address[] = [
+/* export const initialAddress: Address[] = [
   {
     id: crypto.randomUUID(),
     bairro: "Bairro",
@@ -28,7 +28,7 @@ export const initialAddress: Address[] = [
     cep: "Cep",
     consultedAt: new Date(),
   },
-];
+]; */
 
 
 
