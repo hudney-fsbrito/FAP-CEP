@@ -45,22 +45,22 @@ export default function Home() {
   };
 
   const handleDeleteAddress = (id: string) => {
-    console.log(id);
+    // console.log(id); 
     if (!addresses) return
     const filteredAddresses = addresses.filter((address) => address.id !== id);
-    console.log(filteredAddresses);
+    // console.log(filteredAddresses);
     setAddresses(filteredAddresses);
   };
 
   useEffect(()=>{
-    console.log("Primeira renderização");
+    // console.log("Primeira renderização");
     const result = localStorage.getItem("@addresses")
     if (result !== null) {
         setAddresses(JSON.parse(result));
     }
   }, [])
   useEffect(()=>{
-    console.log("Address mudou");
+    // console.log("Address mudou");
     if (addresses === null) return
     localStorage.setItem("@addresses", JSON.stringify(addresses))
   }, [addresses])

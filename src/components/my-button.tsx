@@ -20,58 +20,71 @@ function formatDate(date:Date) {
 }
 
 export function MyButton() {
-  const [adress, setAdress] = useState(null);
+  /* const [adress, setAdress] = useState(null);
   const [cep, setCep] = useState(null);
-  const [neighborhood, setNeighborhood] = useState(null);
+  const [neighborhood, setNeighborhood] = useState(null); */
   const [loading, setLoading] = useState(false);
 
   const [textValue, setTextVelue] = useState("");
   const [addresses, setAddresses] = useState<Address[]>(initialAddress);
 
   async function handleGetAddress() {
+    console.log("Botão clicado");
+    
+    console.log("Valor atual:", textValue); // Verificar o valor ao clicar no botão
     setLoading(true);
     try {
+      console.log(textValue + ' Dentro do try');
+      
       const result = await getAddress(textValue);
-    
+      
       //Adiciona um atributo no objeto
       const newAdress: Address = {
         id: self.crypto.randomUUID(),
         consultedAt: new Date, 
         ...result} 
-
       if (result?.erro === "true") {
         alert("CEP inválido.");
         return;
       }
 
-      console.log(result);
-      console.log(newAdress);
+      // console.log(result);
+      // console.log(newAdress);
       
-      console.log(textValue);
+      // console.log(textValue);
 
-      setAdress(result.logradouro);
-      setCep(result.cep);
-      setNeighborhood(result.bairro);
+      // setAdress(result.logradouro);
+      // setCep(result.cep);
+      // setNeighborhood(result.bairro);
 
       const newAddresses = [newAdress, ...addresses];
       setAddresses(newAddresses);
+      
     } catch (error) {
       console.log(error);
       alert("Ocorrey um erro ao obter o endereço.");
     } finally {
       setLoading(false);
     }
+       
+    setTextVelue("");
   }
+  
+  
 
   return (
     <>
       <div className="flex flex-row gap-5">
         <div className="flex flex-col text-primary3">
-          <label htmlFor="" className="text-primary3">CEP</label>
+          <label htmlFor="cep" className="text-primary3">CEP</label>
           <input
-            onChange={(e) => {
+          id="cep"
+          value={textValue}
+            onChange={(e) => {              
               setTextVelue(e.target.value);
+              console.log("Digitado:", e.target.value); // Verifica o evento de input
             }}
+            
             className="border border-s-4 border-b-primary text-primary4 active:text-primary4 p-5 rounded-2xl"
             type="text"
             placeholder="Digite um CEP válido"
@@ -90,9 +103,9 @@ export function MyButton() {
           {/* {String(loading)} */}
           {loading ? "Carregando..." : "Obter endereço"}
 
-          <div>Endereço: {adress}</div>
+          {/* <div>Endereço: {adress}</div>
           <div>cep: {cep}</div>
-          <div>Bairro: {neighborhood}</div>
+          <div>Bairro: {neighborhood}</div> */}
         </div>
       </div>
       <div>
