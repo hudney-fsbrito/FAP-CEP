@@ -5,9 +5,11 @@ export async function getAddress(cep: string) {
     const response = await fetch(url);
     // console.log(response);
     const data = await response.json();
+    console.log("Resposta da API:", data);
     return data
   } catch (error) {
     console.error("Ocorreu algum erro na requisição", error);
+    throw error;
   }
 }
 

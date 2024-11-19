@@ -2,6 +2,9 @@ import { Address } from "@/app/page";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { getAddress } from "../../get-address";
+// import toast from "react-hot-toast";
+
+
 
 // Formatação de data
 export function formatDate(date: Date) {
@@ -13,6 +16,7 @@ export function formatDate(date: Date) {
 
 // Função para buscar o endereço
 export async function fetchAddress(textValue: string): Promise<Address | null> {
+  
   try {
     const result = await getAddress(textValue);
 
@@ -28,7 +32,7 @@ export async function fetchAddress(textValue: string): Promise<Address | null> {
     };
     return newAddress;
   } catch (error) {
-    console.error("Erro ao obter o endereço:", error);
+    console.error("Erro ao obter o endereço:", textValue,error);
     alert("Ocorreu um erro ao obter o endereço.");
     return null;
   }

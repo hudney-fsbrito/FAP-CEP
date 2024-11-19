@@ -1,10 +1,9 @@
-// page.tsx
 "use client";
 import { useEffect, useState } from "react";
-import { MyButton } from "./components/my-button";
 import { MdOutlineDelete } from "react-icons/md";
 import { fetchAddress, formatDate } from "./addressUtil";
 import { motion } from "framer-motion";
+import { MyButton } from "./components/my-button";
 // import imgBackground from "../../public/backgroundMapa.jpg"
 
 export type Address = {
@@ -31,6 +30,8 @@ export const initialAddress: Address[] = [
   },
 ];
 
+
+
 export default function Home() {
   const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -38,17 +39,18 @@ export default function Home() {
   const handleFetchAddress = async (textValue: string) => {
     setLoading(true);
     const newAddress = await fetchAddress(textValue);
+    
     if (newAddress) {
       setAddresses([newAddress, ...addresses || []]);
     }
     setLoading(false);
+    console.log("Chamando fetchAddress com:", textValue);
   };
 
   const handleDeleteAddress = (id: string) => {
     // console.log(id); 
     if (!addresses) return
     const filteredAddresses = addresses.filter((address) => address.id !== id);
-    // console.log(filteredAddresses);
     setAddresses(filteredAddresses);
   };
 

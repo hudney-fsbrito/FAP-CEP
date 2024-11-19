@@ -29,15 +29,10 @@ export function MyButton() {
   const [addresses, setAddresses] = useState<Address[]>(initialAddress);
 
   async function handleGetAddress() {
-    console.log("Botão clicado");
-    
-    console.log("Valor atual:", textValue); // Verificar o valor ao clicar no botão
     setLoading(true);
     try {
-      console.log(textValue + ' Dentro do try');
-      
       const result = await getAddress(textValue);
-      
+    
       //Adiciona um atributo no objeto
       const newAdress: Address = {
         id: self.crypto.randomUUID(),
@@ -66,8 +61,8 @@ export function MyButton() {
     } finally {
       setLoading(false);
     }
-       
     setTextVelue("");
+    
   }
   
   
@@ -79,10 +74,10 @@ export function MyButton() {
           <label htmlFor="cep" className="text-primary3">CEP</label>
           <input
           id="cep"
-          value={textValue}
-            onChange={(e) => {              
+          // value={textValue}
+            onChange={(e) => {
+              // e.target.value = textValue;
               setTextVelue(e.target.value);
-              console.log("Digitado:", e.target.value); // Verifica o evento de input
             }}
             
             className="border border-s-4 border-b-primary text-primary4 active:text-primary4 p-5 rounded-2xl"
